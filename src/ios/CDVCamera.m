@@ -520,8 +520,8 @@ static NSString* toBase64(NSData* data) {
     
     dispatch_block_t invoke = ^(void) {
         __block CDVPluginResult* result = nil;
-        if (cameraPicker.webView && [cameraPicker.webView respondsToSelector:@selector(setBounds:)]) {
-            [cameraPicker.webView setBounds:[UIApplication sharedApplication].keyWindow.bounds];
+         if (cameraPicker.webView && [cameraPicker.webView respondsToSelector:@selector(setFrame:)]) {
+            [cameraPicker.webView setFrame:CGRectMake(0, 0, 1024, 768)];
         }
         NSString* mediaType = [info objectForKey:UIImagePickerControllerMediaType];
         if ([mediaType isEqualToString:(NSString*)kUTTypeImage]) {
@@ -566,8 +566,8 @@ static NSString* toBase64(NSData* data) {
     
     dispatch_block_t invoke = ^ (void) {
         CDVPluginResult* result;
-	    if (cameraPicker.webView && [cameraPicker.webView respondsToSelector:@selector(setBounds:)]) {
-            [cameraPicker.webView setBounds:[UIApplication sharedApplication].keyWindow.bounds];
+	    if (cameraPicker.webView && [cameraPicker.webView respondsToSelector:@selector(setFrame:)]) {
+            [cameraPicker.webView setFrame:CGRectMake(0, 0, 1024, 768)];
         }
         if (picker.sourceType == UIImagePickerControllerSourceTypeCamera && [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo] != ALAuthorizationStatusAuthorized) {
             result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"has no access to camera"];
